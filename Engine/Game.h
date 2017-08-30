@@ -28,6 +28,7 @@
 #include "Snake.h"
 #include "SpriteCodex.h"
 #include "Food.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -47,8 +48,8 @@ private:
 	Graphics gfx;
 	Board brd;
 	Snake snek;
-
 	Location delta_loc{ 1,0 };
+	FrameTimer ft;
 	std::mt19937 rng;
 	Food food;
 	int snekMovePeriod = 10;

@@ -48,6 +48,7 @@ void Game::UpdateModel()
 	}
 	if (!gameIsOver && isStarted)
 	{
+		const float dt = ft.MarkTime();
 		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
 			delta_loc = { 0,-1 };
