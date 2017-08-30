@@ -52,9 +52,9 @@ private:
 	FrameTimer ft;
 	std::mt19937 rng;
 	Food food;
-	int snekMovePeriod = 10;
+	float snekMovePeriod = .25f;
 	int foodCounter = 0;
-	int snekMoveCounter = 0;
+	float snekMoveCounter = 0.0f;
 	bool isStarted = false;
 	bool gameIsOver = false;
 	/********************************/

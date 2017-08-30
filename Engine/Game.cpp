@@ -42,13 +42,13 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt = ft.MarkTime();
 	if (wnd.kbd.KeyIsPressed(VK_RETURN))
 	{
 		isStarted = true;
 	}
 	if (!gameIsOver && isStarted)
 	{
-		const float dt = ft.MarkTime();
 		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
 			delta_loc = { 0,-1 };
@@ -66,10 +66,10 @@ void Game::UpdateModel()
 			delta_loc = { 1,0 };
 		}
 
-		++snekMoveCounter;
-		if (snekMoveCounter > snekMovePeriod)
+		snekMoveCounter += dt;
+		if (snekMoveCounter >= snekMovePeriod)
 		{
-			snekMoveCounter = 0;
+			snekMoveCounter -= snekMovePeriod;
 			Location next(snek.GetNextHeadLocation(delta_loc));
 			if (!brd.IsInsideBoard(next) || snek.IsInTile(next))
 			{
@@ -88,13 +88,13 @@ void Game::UpdateModel()
 				{
 					food.Respawn(rng, brd, snek);
 				}
-				if (foodCounter % 5 == 0 && isEating)
+				if (foodCounter % 3 == 0 && isEating)
 				{
-					--snekMovePeriod;
+					snekMovePeriod -= .03f;
 				}
-				if (snekMovePeriod < 4)
+				if (snekMovePeriod < .07f)
 				{
-					snekMovePeriod = 4;
+					snekMovePeriod = .07f;
 				}
 			}
 		}
